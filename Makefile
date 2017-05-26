@@ -1,3 +1,4 @@
+BENCHMARK = node_modules/.bin/sanctuary-benchmark --colors
 DOCTEST = node_modules/.bin/doctest --module commonjs --prefix .
 ESLINT = node_modules/.bin/eslint --report-unused-disable-directives
 GENERATE_README = scripts/generate-readme
@@ -33,6 +34,11 @@ index.js.tmp: index.js
 	$(GENERATE_README)
 
 
+.PHONY: bench
+bench:
+	$(BENCHMARK)
+
+
 .PHONY: doctest
 doctest: index-no-blockquotes.js
 ifeq ($(shell node --version | cut -d . -f 1),v6)
@@ -49,6 +55,11 @@ index-no-blockquotes.js: index.js $(PREDOCTEST)
 .PHONY: lint
 lint:
 	$(ESLINT) -- index.js $(PREDOCTEST) $(TEST)
+	$(ESLINT) \
+	  --env node \
+	  --rule 'key-spacing: [off]' \
+	  --rule 'max-len: [off]' \
+	  -- bench/*
 	$(REMEMBER_BOWER) $(shell pwd)
 	rm -f README.md
 	VERSION=0.0.0 make README.md

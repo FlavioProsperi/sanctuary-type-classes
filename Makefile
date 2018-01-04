@@ -1,4 +1,4 @@
-BENCHMARK = node_modules/.bin/sanctuary-benchmark --colors
+BENCHMARK = node_modules/.bin/sanctuary-benchmark
 DOCTEST = node_modules/.bin/doctest --module commonjs --prefix .
 ESLINT = node_modules/.bin/eslint --report-unused-disable-directives
 GENERATE_README = scripts/generate-readme

@@ -13,7 +13,7 @@ function inc(x) {
   return x + 1;
 }
 
-module.exports = benchmark(oldZ, newZ, {
+module.exports = benchmark(oldZ, newZ, {left: 'Old', right: 'New'}, {
   'functions/of/Array':          function(Z) { Z.of(Array, 42); },
   'functions/of/Identity':       function(Z) { Z.of(Identity, 42); },
   'methods/equals/Identity':     function(Z) { Z.equals(Identity(0), Identity(0)); },
